@@ -9,11 +9,11 @@ def main(page):
     soup = BeautifulSoup(src , "lxml")
     matches_details = []
 
-    champianships = soup.find_all("div" , {'class': 'matchCard'})
+    championships = soup.find_all("div" , {'class': 'matchCard'})
     
-    def get_match_info(champianships):
-        champianship_title = champianships.contents[1].find('h2').text.strip()
-        all_matches = champianships.contents[3].find_all("div" , {'class':'item'})
+    def get_match_info(championships):
+        champianship_title = championships.contents[1].find('h2').text.strip()
+        all_matches = championships.contents[3].find_all("div" , {'class':'item'})
         number_of_matches = len(all_matches)
         for i in range(number_of_matches):
             # get teams name
@@ -34,8 +34,8 @@ def main(page):
 
             
 
-    for i in range(len(champianships)):
-        get_match_info(champianships[i])
+    for i in range(len(championships)):
+        get_match_info(championships[i])
 
     keys = matches_details[0].keys()
     with open('Documents/scraping/matches-details.csv','w') as output_file :
